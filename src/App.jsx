@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { 
   signInAnonymously, 
   signInWithCustomToken, 
-  onAuthStateChanged 
+  onAuthStateChanged, 
+  getAuth
 } from 'firebase/auth';
 import { 
   doc, 
@@ -11,6 +12,7 @@ import {
   onSnapshot,
   updateDoc,
   serverTimestamp,
+  getFirestore,
 } from 'firebase/firestore';
 import { 
   CheckCircle, 
@@ -50,10 +52,24 @@ import {
   Activity,
   CloudOff
 } from 'lucide-react';
-import { auth, db } from './firebase';
+import { initializeApp } from 'firebase/app';
 
+const firebaseConfig = {
+  apiKey: "AIzaSyDuYlrBNQhLvtNDPUBWhOke9B3NrjuMDo0",
+  authDomain: "academymapeline.firebaseapp.com",
+  projectId: "academymapeline",
+  storageBucket: "academymapeline.firebasestorage.app",
+  messagingSenderId: "940329792442",
+  appId: "1:940329792442:web:d55e49b9e0f25efd1a6383",
+  measurementId: "G-DL1FT85RVC"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+// Ganti string ini bebas, ini folder di database Anda
 const appId = 'actions-app-prod';
-
 // --- DAFTAR KARYAWAN TETAP ---
 const EMPLOYEES = [
   { id: 'alwi', name: 'Alwi Rahmat Muhamad', defaultPin: '123456' },
