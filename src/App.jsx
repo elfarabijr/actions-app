@@ -1,23 +1,16 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { 
-  initializeApp 
-} from 'firebase/app';
-import { 
-  getAuth, 
   signInAnonymously, 
   signInWithCustomToken, 
   onAuthStateChanged 
 } from 'firebase/auth';
 import { 
-  getFirestore, 
   doc, 
   setDoc, 
   getDoc, 
-  collection, 
   onSnapshot,
   updateDoc,
   serverTimestamp,
-  deleteDoc
 } from 'firebase/firestore';
 import { 
   CheckCircle, 
@@ -57,23 +50,8 @@ import {
   Activity,
   CloudOff
 } from 'lucide-react';
+import { auth, db } from './firebase';
 
-// --- KONFIGURASI FIREBASE ---
-// --- KONFIGURASI FIREBASE ---
-// Tempel config dari Firebase Console di sini
-const firebaseConfig = {
-  apiKey: "AIzaSy...",
-  authDomain: "project-id.firebaseapp.com",
-  projectId: "project-id",
-  storageBucket: "project-id.appspot.com",
-  messagingSenderId: "...",
-  appId: "..."
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-// Ganti string ini bebas, ini folder di database Anda
 const appId = 'actions-app-prod';
 
 // --- DAFTAR KARYAWAN TETAP ---
